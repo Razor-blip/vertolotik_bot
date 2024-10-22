@@ -1,0 +1,7 @@
+aiogram==3.13.1
+aiogram3_form==2.0.4
+email_validator==2.2.0
+password_validator==1.0
+phone_number_validator==1.0.2
+SQLAlchemy==2.0.36
+SQLAlchemy_Utils==0.41.2
