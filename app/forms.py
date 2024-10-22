@@ -2,11 +2,12 @@ from aiogram3_form import Form, FormField
 
 from keyboards import get_account_type_keyboard, get_phone_number_keyboard
 from register_validators import validate_username, validate_email_adress, validate_phone_number, validate_password
+from login_validators import check_username
 
 class RegisterForm(Form):
     username: str = FormField(enter_message_text="Введіть username",
                               filter=validate_username,
-                              error_message_text="Такий користувач вже зареєстрований. Будь ласка увійдіть в нього натиснувши сюди -> /start",)
+                              error_message_text="Такий користувач вже зареєстрований. Будь ласка увійдіть в нього натиснувши сюди -> /start")
     email: str = FormField(enter_message_text="Введіть Email",
                            filter=validate_email_adress,
                            error_message_text="Введено некоректний email! Спробуйте ще раз")
@@ -19,4 +20,14 @@ class RegisterForm(Form):
                               error_message_text="Введено некоректний пароль!(пароль повинен містити букви та цифри)")
     account_type: str = FormField(enter_message_text="Виберіть тип аккаунту",
                                   reply_markup=get_account_type_keyboard())
-
+    
+class LoginForm(Form):
+    username: str = FormField(enter_message_text="Введіть username",
+                              filter=check_username,
+                              error_message_text="Такого користувача не знайдено. Будь ласка введіть правильний нік")
+    password: str = FormField(enter_message_text="Введіть пароль")
+    
+class OrderForm(Form):
+    task_name: str = FormField(enter_message_text="Введіть назву вашого завдання")
+    description: str = FormField(enter_message_text="Введіть опис")
+    price: str = FormField(enter_message_text="Введіть ціну")

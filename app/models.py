@@ -21,11 +21,21 @@ class Users(Base):
     __tablename__ = 'Users'
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    username: Mapped[str] = mapped_column(String(255))
+    username: Mapped[str] = mapped_column(String(50))
     email: Mapped[str] = mapped_column(String(50))
     phone_number: Mapped[str] = mapped_column(String(50))
     account_type: Mapped[str] = mapped_column(String(10))
     password: Mapped[str] = mapped_column(String(8))
+
+class Orders(Base):
+    __tablename__ = 'Orders'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(String(50))
+    task_name: Mapped[str] = mapped_column(String(50))
+    description: Mapped[str] = mapped_column(String(255))
+    price: Mapped[int] = mapped_column(Integer())
+    status: Mapped[str] = mapped_column(String(25))
 
 # Create tables
 Base.metadata.create_all(bind=engine)

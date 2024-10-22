@@ -2,6 +2,8 @@ from aiogram.types import (
     KeyboardButton,
     ReplyKeyboardMarkup,
     KeyboardButtonPollType,
+    InlineKeyboardMarkup, 
+    InlineKeyboardButton
 )
 
 class GreetKeyboard:
@@ -14,6 +16,16 @@ class AccountType:
 
 class GetPhoneNumber:
     GETPHONENUMBER = "Поділитись контактом"
+
+class CustomerMenu:
+    CREATE_ORDER = "Створити замовлення"
+    CHECK_ACCEPTED_ORDERS = "Переглянути прийняті замовлення"
+
+class PerformerMenu:
+    CHECK_ALL_ORDERS = "Переглянути замовлення"
+
+class PayOrder:
+    PAY_ORDER = "Оплатити замовлення"
 
 def get_greet_keyboard():
     button_register = KeyboardButton(text=GreetKeyboard.REGISTER)
@@ -44,5 +56,24 @@ def get_phone_number_keyboard():
         keyboard=[[button_phone_number]],
         resize_keyboard=True,
         one_time_keyboard=True
+    )
+    return markup
+
+def get_customer_menu():
+    create_order_button = KeyboardButton(text=CustomerMenu.CREATE_ORDER)
+    check_accepted_orders_button = KeyboardButton(text=CustomerMenu.CHECK_ACCEPTED_ORDERS)
+
+    markup = ReplyKeyboardMarkup(
+        keyboard=[[create_order_button, check_accepted_orders_button]],
+        resize_keyboard=True,
+        one_time_keyboard=True
+    )
+    return markup
+
+def get_pay_order_button(order_id):
+    pay_order_button = InlineKeyboardButton(text="Оплатити замовлення", callback_data=f"pay:{order_id}")
+
+    markup = InlineKeyboardMarkup(
+        inline_keyboard=[[pay_order_button]]
     )
     return markup
