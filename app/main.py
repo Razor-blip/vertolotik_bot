@@ -3,7 +3,6 @@ import os
 import asyncio
 from aiogram import Bot, Router, Dispatcher, types, F
 from aiogram.filters import CommandStart
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
 from dotenv import load_dotenv
 
